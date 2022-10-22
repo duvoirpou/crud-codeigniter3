@@ -54,6 +54,12 @@
 			<?php echo $this->session->flashdata('error') ?>
 		</div>
 	<?php } ?>
+	
+	<?php if ($this->session->flashdata('inserted')) { ?>
+		<div class="bg-success text-white text-center">
+			<?php echo $this->session->flashdata('inserted') ?>
+		</div>
+	<?php } ?>
 	</div>
 
 

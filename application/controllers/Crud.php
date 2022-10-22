@@ -30,12 +30,16 @@ class Crud extends CI_Controller
 
 			$this->session->set_flashdata($data_error);
 		} else {
-			$this->crud_model->insertProduct([
+			$result = $this->crud_model->insertProduct([
 				'name' => $this->input->post('name'),
 				'price' => $this->input->post('price'),
 				'description' => $this->input->post('description'),
 				'category' => $this->input->post('category'),
 			]);
+		}
+
+		if ($result) {
+			$this->session->set_flashdata('inserted', 'Your data has been successfully added!');
 		}
 
 		redirect('crud');
