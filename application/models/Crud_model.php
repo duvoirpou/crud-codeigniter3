@@ -12,5 +12,9 @@ class Crud_model extends CI_Model {
 		}
 	}
 
+	public function insertProduct($data){
+		$this->db->insert('products',$data);
+	}
+
 	
 }

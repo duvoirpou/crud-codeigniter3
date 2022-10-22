@@ -47,6 +47,13 @@
 				<?php } ?>
 			</tbody>
 		</table>
+
+
+	<?php if ($this->session->flashdata('error')) { ?>
+		<div class="bg-danger text-white text-center">
+			<?php echo $this->session->flashdata('error') ?>
+		</div>
+	<?php } ?>
 	</div>
 
 
@@ -54,17 +61,53 @@
 	<div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="addProductLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="addProductLabel">Add Product</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					...
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
+				<form action="<?php echo base_url(); ?>crud/addProduct" method="POST">
+					<div class="modal-header">
+						<h5 class="modal-title" id="addProductLabel">Add Product</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="name">Name</label>
+									<input type="text" name="name" id="name" class="form-control" placeholder="">
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="price">Price</label>
+									<input type="text" name="price" id="price" class="form-control" placeholder="">
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="category">category</label>
+									<input type="text" name="category" id="category" class="form-control" placeholder="">
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="description">Description</label>
+									<textarea name="description" class="form-control" id="description" cols="30" rows="5"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<input type="submit" class="btn btn-primary" name="insert" value="Add Product">
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
