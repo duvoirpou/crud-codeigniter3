@@ -126,4 +126,14 @@ class Crud extends CI_Controller
 
 		redirect('crud');
 	}
+
+	public function search_keyword()
+	{
+		
+
+		$keyword = $this->input->post('keyword');
+		$data = array();
+		$data['results'] = $this->crud_model->search($keyword);
+		$this->load->view('result_view', $data);
+	}
 }

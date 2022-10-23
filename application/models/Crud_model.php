@@ -55,5 +55,13 @@ class Crud_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function search($keyword){
+		$this->db->like('name',$keyword);
+		$this->db->or_like('price',$keyword);
+		$this->db->or_like('description',$keyword);
+		$this->db->or_like('category',$keyword);
+		return $this->db->get('products')->result_array();
+	}
 	
 }

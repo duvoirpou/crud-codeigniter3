@@ -30,6 +30,7 @@
 					<input type="submit" value="Search" class="btn btn-success mt-2">
 				</div>
 			</form>
+			<a href="<?php echo base_url(); ?>crud" class="btn btn-primary mb-3 mt-3" style="float: right;">Accueil</a>
 		</div>
 		<table class="table table-striped table-table-hover">
 			<thead>
@@ -42,46 +43,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($product_details as $product) { ?>
+				<?php foreach ($results as $product) { ?>
 					<tr>
-						<td scope="row"><?php echo $product->name; ?></td>
-						<td><?php echo $product->price; ?></td>
-						<td><?php echo $product->description; ?></td>
-						<td><?php echo $product->category; ?></td>
+						<td scope="row"><?php echo $product['name']; ?></td>
+						<td><?php echo $product['price']; ?></td>
+						<td><?php echo $product['description']; ?></td>
+						<td><?php echo $product['category']; ?></td>
 						<td>
-							<a href="<?php echo base_url() ?>crud/editProduct/<?php echo $product->id; ?>" class="btn btn-success btn-sm">Edit</a>
-							<a href="<?php echo base_url() ?>crud/deleteProduct/<?php echo $product->id; ?>" onclick="return confirm('Voulez-vous supprimer ce produit ?');" class="btn btn-danger btn-sm">Delete</a>
+							<a href="<?php echo base_url() ?>crud/editProduct/<?php echo $product['id']; ?>" class="btn btn-success btn-sm">Edit</a>
+							<a href="<?php echo base_url() ?>crud/deleteProduct/<?php echo $product['id']; ?>" onclick="return confirm('Voulez-vous supprimer ce produit ?');" class="btn btn-danger btn-sm">Delete</a>
 						</td>
 					</tr>
 				<?php } ?>
 			</tbody>
 		</table>
-		<?= $this->pagination_bootstrap->render() ?>
+		<?php //echo $this->pagination_bootstrap->render() ?>
 
-		<?php if ($this->session->flashdata('error')) { ?>
-			<div class="bg-danger text-white text-center">
-				<?php echo $this->session->flashdata('error') ?>
-			</div>
-		<?php } ?>
-
-		<?php if ($this->session->flashdata('inserted')) { ?>
-			<div class="bg-success text-white text-center">
-				<?php echo $this->session->flashdata('inserted') ?>
-			</div>
-		<?php } ?>
-
-
-		<?php if ($this->session->flashdata('updated')) { ?>
-			<div class="bg-success text-white text-center">
-				<?php echo $this->session->flashdata('updated') ?>
-			</div>
-		<?php } ?>
-
-		<?php if ($this->session->flashdata('deleted')) { ?>
-			<div class="bg-success text-white text-center">
-				<?php echo $this->session->flashdata('deleted') ?>
-			</div>
-		<?php } ?>
+		
 	</div>
 
 
