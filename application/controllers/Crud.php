@@ -99,4 +99,15 @@ class Crud extends CI_Controller
 		$this->data->insert_data('product_detail',$data);
 		header('location'.base_url().'product'); */
 	}
+
+	public function deleteProduct($id)
+	{
+		$result = $this->crud_model->deleteItem($id);
+
+		if ($result == true) {
+			$this->session->set_flashdata('deleted', 'Your data has been successfully deleted!');
+		}
+
+		redirect('crud');
+	}
 }

@@ -41,7 +41,7 @@
 						<td><?php echo $product->category; ?></td>
 						<td>
 							<a href="<?php echo base_url() ?>crud/editProduct/<?php echo $product->id; ?>" class="btn btn-success btn-sm">Edit</a>
-							<a href="#" class="btn btn-danger btn-sm">Delete</a>
+							<a href="<?php echo base_url() ?>crud/deleteProduct/<?php echo $product->id; ?>" onclick="return confirm('Voulez-vous supprimer ce produit ?');" class="btn btn-danger btn-sm">Delete</a>
 						</td>
 					</tr>
 				<?php } ?>
@@ -65,6 +65,12 @@
 	<?php if ($this->session->flashdata('updated')) { ?>
 		<div class="bg-success text-white text-center">
 			<?php echo $this->session->flashdata('updated') ?>
+		</div>
+	<?php } ?>
+
+	<?php if ($this->session->flashdata('deleted')) { ?>
+		<div class="bg-success text-white text-center">
+			<?php echo $this->session->flashdata('deleted') ?>
 		</div>
 	<?php } ?>
 	</div>

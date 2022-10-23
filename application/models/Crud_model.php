@@ -45,5 +45,15 @@ class Crud_model extends CI_Model {
 		
 	}
 
+	public function deleteItem($id){
+		$this->db->where('id',$id);
+		$query = $this->db->delete('products');
+
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }
