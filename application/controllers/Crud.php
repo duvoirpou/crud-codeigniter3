@@ -54,4 +54,49 @@ class Crud extends CI_Controller
 		$this->data->insert_data('product_detail',$data);
 		header('location'.base_url().'product'); */
 	}
+
+	public function editProduct($id){
+		$data['singleProduct'] = $this->crud_model->getSingleProduct($id);
+
+		$this->load->view('edit_view', $data);
+	}
+
+	public function update($id)
+	{
+		$this->form_validation->set_rules('name', 'Product Name', 'trim|required');
+		$this->form_validation->set_rules('price', 'Product Price', 'trim|required');
+		$this->form_validation->set_rules('description', 'Product Description', 'trim|required');
+		$this->form_validation->set_rules('category', 'Product Category', 'trim|required');
+
+		if ($this->form_validation->run() == false) {
+			$data_error = [
+				'error' => validation_errors()
+			];
+
+			$this->session->set_flashdata($data_error);
+		} else {
+			$result = $this->crud_model->updateProduct([
+				'name' => $this->input->post('name'),
+				'price' => $this->input->post('price'),
+				'description' => $this->input->post('description'),
+				'category' => $this->input->post('category'),
+			], $id);
+		}
+
+		if ($result) {
+			$this->session->set_flashdata('updated', 'Your data has been successfully updated!');
+		}
+
+		redirect('crud');
+
+		/* $data=array(
+			'name' => $this->input->post('name'),
+			'price' => $this->input->post('price'),
+			'description' => $this->input->post('description'),
+			'category' => $this->input->post('category'),
+		);
+
+		$this->data->insert_data('product_detail',$data);
+		header('location'.base_url().'product'); */
+	}
 }

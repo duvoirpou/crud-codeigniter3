@@ -40,7 +40,7 @@
 						<td><?php echo $product->description; ?></td>
 						<td><?php echo $product->category; ?></td>
 						<td>
-							<a href="#" class="btn btn-success btn-sm">Edit</a>
+							<a href="<?php echo base_url() ?>crud/editProduct/<?php echo $product->id; ?>" class="btn btn-success btn-sm">Edit</a>
 							<a href="#" class="btn btn-danger btn-sm">Delete</a>
 						</td>
 					</tr>
@@ -58,6 +58,13 @@
 	<?php if ($this->session->flashdata('inserted')) { ?>
 		<div class="bg-success text-white text-center">
 			<?php echo $this->session->flashdata('inserted') ?>
+		</div>
+	<?php } ?>
+	
+	
+	<?php if ($this->session->flashdata('updated')) { ?>
+		<div class="bg-success text-white text-center">
+			<?php echo $this->session->flashdata('updated') ?>
 		</div>
 	<?php } ?>
 	</div>
