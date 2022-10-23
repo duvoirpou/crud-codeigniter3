@@ -12,7 +12,23 @@ class Crud extends CI_Controller
 
 	public function index()
 	{
-		$data['product_details'] = $this->crud_model->getAllProducts();
+		// Load pagination library 
+		$this->load->library('Pagination_bootstrap');
+
+		// Set number of rows per page
+		$this->pagination_bootstrap->offset(10);
+
+		// Customize links
+		$links = array('next' => 'Next', 'prev' => 'Previous', 'last' => 'Last', 'first' => 'First');
+		$this->pagination_bootstrap->set_links($links);
+
+		// load data from db
+		$sql = $this->db->get('products');
+
+		// Get number of pages
+		$data['product_details'] = $this->pagination_bootstrap->config("/crud/index", $sql);
+
+		/* $data['product_details'] = $this->crud_model->getAllProducts(); */
 		$this->load->view('crud_view', $data);
 	}
 

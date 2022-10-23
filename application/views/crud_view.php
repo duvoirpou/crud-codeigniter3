@@ -47,7 +47,7 @@
 				<?php } ?>
 			</tbody>
 		</table>
-
+<?=$this->pagination_bootstrap->render() ?>
 
 	<?php if ($this->session->flashdata('error')) { ?>
 		<div class="bg-danger text-white text-center">
